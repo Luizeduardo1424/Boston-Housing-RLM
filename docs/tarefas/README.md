@@ -42,6 +42,11 @@ Todos estão em `notebooks/EDA.ipynb`. Os índices das células contam a partir 
 | `Tobit(endog, exog, limite, exog_var=None)` | 144 | regressão censurada (subclasse de `GenericLikelihoodModel`) com censura superior em `limite` e $\log\sigma_i$ = `exog_var` @ $\gamma$. `.fit()` devolve resultados com nomes; `.fit(cov_type="HC0")` dá erros padrão sanduíche |
 | `modelo_tobit` | 148 | Tobit de `formula_final` em `df_t` (501 linhas), limite $\log 50$, variância constante |
 | `prever_tobit(m, X_novo)` | 152 | previsão em mil dólares do valor observado $E[\min(MEDV, 50) \mid x]$ |
+| `boston_c` | 156 | `data/boston_corrected.csv` (506 linhas, mesmo índice de `df`): `TOWN`, `TRACT`, `LON`, `LAT`, `CMEDV`. Ligue com `boston_c.loc[dados.index]` |
+| `coordenadas_km(indice)` | 156 | coordenadas planas em km das linhas `indice` |
+| `matrizes_vizinhanca(indice)` | 158 | dicionário com a matriz KNN (k = 6) e a de distância, padronizadas por linha |
+| `W_knn` | 158 | matriz KNN (k = 6) das 473 linhas de `df_final` |
+| `sem_het` | 164 | modelo de erro espacial de `formula_final` em `df_final` por GMM robusto a heterocedasticidade (`spreg.GM_Error_Het`) |
 | validação cruzada | 126 | `KFold(n_splits=10, shuffle=True, random_state=42).split(df_t)`, com RMSE, MAE e R² fora da amostra |
 
 Referência para comparar: o modelo final tem RMSE 4,00, MAE 2,75 e R² fora da amostra 0,79 na validação cruzada (Seção 16.1).

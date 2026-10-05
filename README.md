@@ -208,6 +208,7 @@ O projeto será desenvolvido utilizando:
 * **SciPy**
 * **Statsmodels**
 * **Scikit-learn**
+* **PySAL** (`libpysal`, `esda`, `spreg`)
 
 ---
 
@@ -217,10 +218,11 @@ O projeto será desenvolvido utilizando:
 .
 ├── data/
 │   ├── housing.csv              # dados originais (511 linhas)
-│   └── housing_processed.csv    # dados com as colunas em log
+│   ├── housing_processed.csv    # dados com as colunas em log
+│   └── boston_corrected.csv     # versão corrigida com cidade e coordenadas (506 linhas)
 │
 ├── notebooks/
-│   └── EDA.ipynb                # análise completa (Partes 1 a 8)
+│   └── EDA.ipynb                # análise completa (Partes 1 a 11)
 │
 ├── results/
 │   └── figures/                 # gráficos salvos pelo notebook
@@ -237,6 +239,8 @@ O projeto será desenvolvido utilizando:
 ### `data/`
 
 Contém o dataset utilizado no trabalho e a versão com as variáveis transformadas.
+
+`boston_corrected.csv` é a versão corrigida do Boston Housing (Gilley e Pace, 1996; Pace e Gilley, 1997), com a cidade (`TOWN`), o setor censitário (`TRACT`), as coordenadas (`LON`, `LAT`) e o `MEDV` corrigido (`CMEDV`). Fonte: StatLib, https://lib.stat.cmu.edu/datasets/boston_corrected.txt (baixado em 05/10/2026; as colunas `OBS.` e `TOWN#` foram renomeadas para `OBS` e `TOWN_ID`). Suas 506 linhas seguem a ordem das 506 primeiras linhas de `housing.csv` e são usadas na Parte 11 (correlação espacial).
 
 ### `notebooks/`
 
@@ -299,10 +303,10 @@ Todos os termos são significativos a 5% com HC3, e também com erros padrão ag
 | `LSTAT` | +1% reduz `MEDV` em cerca de 0,31% |
 | `RM` | +1 cômodo: +8% (6 cômodos), +12% (casa média), +24% (7), +42% (8) |
 | `NOX` | +0,1 reduz `MEDV` em cerca de 6,4% |
-| `CHAS` | margem do rio Charles: +9,6% |
+| `CHAS` | margem do rio Charles: +9,6% (não significativo no modelo de erro espacial, Parte 11) |
 | `CRIM` | +1 ponto reduz `MEDV` em 1,7% |
 | `PTRATIO` | +1 aluno por professor reduz `MEDV` em 2,7% |
-| `DIS` | +1% reduz `MEDV` em 0,14% |
+| `DIS` | +1% reduz `MEDV` em 0,14% (0,07% e p = 0,07 no modelo de erro espacial, Parte 11) |
 | `RAD` | níveis 2 a 24 valem de 5% a 18% a mais que o nível 1 |
 | `B` | efeito positivo e pequeno |
 
@@ -312,7 +316,7 @@ Todos os termos são significativos a 5% com HC3, e também com erros padrão ag
 Linearidade:        aceita (RESET p = 0,94)
 Normalidade:        quase normal (correlação QQ 0,993); Shapiro-Wilk ainda rejeita (p = 0,001)
 Homocedasticidade:  rejeitada (Breusch-Pagan p ≈ 10⁻¹¹); inferência com HC3 e variância modelada por MQGF (Parte 9)
-Independência:      rejeitada pela ordem do arquivo (DW = 1,41): dependência entre regiões vizinhas
+Independência:      rejeitada: correlação espacial entre setores vizinhos (I de Moran 0,32, p = 0,001); modelo de erro espacial (Parte 11)
 Multicolinearidade: sem problema (maior VIF = 4,8, em NOX), após remover TAX e centralizar os quadrados
 ```
 
@@ -334,7 +338,7 @@ O Tobit trata as 16 casas com `MEDV = 50` como "50 ou mais" e prevê o valor obs
 ### Limitações
 
 * A variância dos erros não é constante. Ela foi modelada por MQGF (pesos por `LSTAT`), mas resta uma parte (Breusch-Pagan p ≈ 10⁻⁶), e os intervalos de previsão cobrem só 91% das casas mais baratas;
-* Há correlação espacial entre regiões vizinhas. O conjunto de dados não tem coordenadas para modelá-la;
+* Há correlação espacial entre setores vizinhos (I de Moran 0,32, p = 0,001, com as coordenadas da versão corrigida). Um modelo de erro espacial (Parte 11) remove a correlação e mantém as conclusões sobre `RM`, `LSTAT`, `CRIM`, `NOX`, `PTRATIO` e `B`, mas `CHAS` e `DIS` deixam de ser significativos. Seus efeitos devem ser lidos como associações que dependem da localização ([`docs/pressupostos/11-correlacao-espacial.md`](docs/pressupostos/11-correlacao-espacial.md));
 * `MEDV` é censurado em 50. Um modelo Tobit (Parte 10) mostra que a censura não muda as conclusões: o efeito de `RM` no MQO está atenuado em 12% a 14%, menos de 0,5 erro padrão. O Tobit supõe erros normais e de variância constante, o que os resíduos não cumprem por completo;
 * O ajuste remove 28 casas reais influentes. Para previsão, o modelo deve ser ajustado com todas as linhas.
 
