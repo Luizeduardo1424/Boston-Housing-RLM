@@ -23,4 +23,5 @@ Leia este índice e abra só o arquivo da seção necessária.
 | [`09-heterocedasticidade.md`](09-heterocedasticidade.md) | §17 | Heterocedasticidade: forma da variância, MQGF, volta à escala de `MEDV` e cobertura dos intervalos de previsão (Parte 9) |
 | [`10-tobit.md`](10-tobit.md) | §18 | Censura em `MEDV = 50`: modelo Tobit, conferência por simulação, comparação com o MQO e validação cruzada (Parte 10) |
 | [`11-correlacao-espacial.md`](11-correlacao-espacial.md) | §19 | Correlação espacial: coordenadas da versão corrigida, I de Moran, testes LM, modelo de erro espacial e erros agrupados por `TOWN` (Parte 11) |
+| [`12-interacoes.md`](12-interacoes.md) | §20 | Interação `RM × logLSTAT`: teste de Wald com HC3, alavanca da linha 365, efeito de um cômodo por quartil de `LSTAT` e validação cruzada (Parte 12) |
 | [`referencias.md`](referencias.md) | n/a | Referências |
