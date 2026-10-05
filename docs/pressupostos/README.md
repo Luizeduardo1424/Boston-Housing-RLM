@@ -19,4 +19,5 @@ Leia este índice e abra só o arquivo da seção necessária.
 | [`05-termo-quadratico-rm.md`](05-termo-quadratico-rm.md) | §13 | Termo quadrático de RM (Parte 6) |
 | [`06-transformacoes.md`](06-transformacoes.md) | §14 | Transformações, centralização, HC3 e independência (Parte 7) |
 | [`07-pendencias.md`](07-pendencias.md) | §15 | O que ainda não foi verificado |
+| [`08-modelo-final.md`](08-modelo-final.md) | §16 | Modelo final: seleção, influentes, HC3, erros agrupados e validação cruzada (Parte 8) |
 | [`referencias.md`](referencias.md) | n/a | Referências |

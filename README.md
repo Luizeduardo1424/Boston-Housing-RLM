@@ -113,7 +113,7 @@ A variável `MEDV` será utilizada como variável dependente.
 
 ## 🧪 Metodologia
 
-O desenvolvimento do trabalho será dividido nas seguintes etapas:
+O desenvolvimento do trabalho foi dividido nas seguintes etapas:
 
 ### 1. Análise exploratória dos dados
 
@@ -213,40 +213,37 @@ O projeto será desenvolvido utilizando:
 
 ## 📁 Estrutura do projeto
 
-A estrutura planejada para o repositório é:
-
 ```text
 .
 ├── data/
-│   └── housing.csv
+│   ├── housing.csv              # dados originais (511 linhas)
+│   └── housing_processed.csv    # dados com as colunas em log
 │
 ├── notebooks/
-│   └── regressao_linear_multipla.ipynb
+│   └── EDA.ipynb                # análise completa (Partes 1 a 8)
 │
 ├── results/
-│   ├── figures/
-│   └── tables/
+│   └── figures/                 # gráficos salvos pelo notebook
 │
+├── docs/
+│   └── pressupostos/            # funções, parâmetros e pressupostos de cada etapa
+│
+├── TERMOS_NAO_LINEARES.md
 ├── requirements.txt
-│
 └── README.md
 ```
 
 ### `data/`
 
-Contém o dataset utilizado no trabalho.
+Contém o dataset utilizado no trabalho e a versão com as variáveis transformadas.
 
 ### `notebooks/`
 
-Contém os notebooks utilizados para análise exploratória, construção do modelo e diagnóstico.
-
-### `src/`
-
-Código auxiliar utilizado no desenvolvimento do projeto.
+Contém o notebook com a análise exploratória, a construção do modelo, o diagnóstico e o modelo final.
 
 ### `results/`
 
-Resultados obtidos durante a análise, incluindo gráficos e tabelas.
+Gráficos obtidos durante a análise.
 
 ### `docs/pressupostos/`
 
@@ -256,43 +253,79 @@ Descrição de cada etapa da análise estatística do notebook: funções, parâ
 
 ## 📈 Resultados
 
-> Esta seção será preenchida após a construção e avaliação do modelo.
+Os resultados abaixo são do modelo final (Parte 8 do notebook). Os detalhes estão em [`docs/pressupostos/08-modelo-final.md`](docs/pressupostos/08-modelo-final.md).
 
 ### Modelo ajustado
 
-```text
-A preencher após o ajuste do modelo.
-```
+$$
+\log(MEDV) = \beta_0 + \beta_1 CRIM + \beta_2 CHAS + \beta_3 NOX + \beta_4 \log DIS + \sum_k \gamma_k RAD_k + \beta_5 PTRATIO + \beta_6 B + \beta_7 \log LSTAT + \beta_8 RM_c + \beta_9 RM_c^2 + \beta_{10} (\log LSTAT_c)^2 + \varepsilon
+$$
+
+* `RM_c` e $\log LSTAT_c$ são centralizados na média;
+* `TAX` saiu por colinearidade com `RAD`. `ZN`, `INDUS` e `AGE` saíram por não serem significativas (teste de Wald conjunto, p = 0,96);
+* o ajuste usa 473 linhas: sem as 5 linhas suspeitas, as 5 com `RM` ausente e as 28 observações influentes;
+* os erros padrão são robustos à heterocedasticidade (HC3).
 
 ### R²
 
 ```text
-A preencher.
+R² = 0,885 (dados do ajuste)
+R² fora da amostra = 0,79 (validação cruzada com 10 partes)
 ```
 
 ### R² ajustado
 
 ```text
-A preencher.
+R² ajustado = 0,881 (modelo linear completo da Parte 5: 0,632)
 ```
 
 ### Teste F
 
 ```text
-A preencher.
+F global (HC3) = 184,1 | p-valor ≈ 1,7 × 10⁻¹⁹⁵
 ```
 
 ### Variáveis estatisticamente significativas
 
-```text
-A preencher após os testes de hipóteses.
-```
+Todos os termos são significativos a 5% com HC3, e também com erros padrão agrupados por cidade. Efeitos sobre `MEDV`, mantidos os demais preditores:
+
+| Variável | Efeito |
+| --- | --- |
+| `LSTAT` | +1% reduz `MEDV` em cerca de 0,31% |
+| `RM` | +1 cômodo: +8% (6 cômodos), +12% (casa média), +24% (7), +42% (8) |
+| `NOX` | +0,1 reduz `MEDV` em cerca de 6,4% |
+| `CHAS` | margem do rio Charles: +9,6% |
+| `CRIM` | +1 ponto reduz `MEDV` em 1,7% |
+| `PTRATIO` | +1 aluno por professor reduz `MEDV` em 2,7% |
+| `DIS` | +1% reduz `MEDV` em 0,14% |
+| `RAD` | níveis 2 a 24 valem de 5% a 18% a mais que o nível 1 |
+| `B` | efeito positivo e pequeno |
 
 ### Diagnóstico dos resíduos
 
 ```text
-A preencher após a análise dos pressupostos.
+Linearidade:        aceita (RESET p = 0,94)
+Normalidade:        quase normal (correlação QQ 0,993); Shapiro-Wilk ainda rejeita (p = 0,001)
+Homocedasticidade:  rejeitada (Breusch-Pagan p ≈ 10⁻¹¹); tratada com erros padrão HC3
+Independência:      rejeitada pela ordem do arquivo (DW = 1,41): dependência entre regiões vizinhas
+Multicolinearidade: sem problema (maior VIF = 4,8, em NOX), após remover TAX e centralizar os quadrados
 ```
+
+### Capacidade preditiva
+
+Validação cruzada com 10 partes, erro em mil dólares:
+
+| Modelo | RMSE | MAE | R² fora da amostra |
+| --- | --- | --- | --- |
+| Linear completo (Parte 5) | 4,80 | 3,39 | 0,71 |
+| Modelo final | 4,00 | 2,75 | 0,79 |
+
+### Limitações
+
+* A variância dos erros não é constante. A inferência usa HC3, mas a heterocedasticidade não foi eliminada;
+* Há correlação espacial entre regiões vizinhas. O conjunto de dados não tem coordenadas para modelá-la;
+* `MEDV` é censurado em 50. A censura foi tratada só em parte (sem modelo Tobit);
+* O ajuste remove 28 casas reais influentes. Para previsão, o modelo deve ser ajustado com todas as linhas.
 
 ---
 

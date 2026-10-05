@@ -40,7 +40,7 @@ Um DW perto de 2 indica ausência de autocorrelação. Valores perto de 1 indica
 **O que não foi feito.** O conjunto de dados do Kaggle não traz as coordenadas nem o nome da cidade de cada região. Sem isso, não é possível:
 
 - calcular o **I de Moran** dos resíduos, que é o teste direto de dependência espacial;
-- usar **erros padrão agrupados por cidade** (`cov_type="cluster"`) ou **erros padrão espaciais** (Conley);
+- usar **erros padrão agrupados por cidade** (`cov_type="cluster"`) com a cidade real, ou **erros padrão espaciais** (Conley). A Parte 8 usa uma cidade **aproximada** (mesmos `TAX`, `PTRATIO`, `INDUS` e `ZN`; [Seção 16](08-modelo-final.md));
 - ajustar um **modelo espacial** (defasagem ou erro espacial).
 
 Os erros padrão HAC (Newey-West, `cov_type="HAC"`) usariam a ordem do arquivo como se fosse tempo. Eles não foram usados, pois a ordem é só uma aproximação da vizinhança. Por isso, a independência dos erros fica registrada como **limitação do modelo**.
