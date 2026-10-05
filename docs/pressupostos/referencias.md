@@ -11,4 +11,7 @@
 - Long, J. S.; Ervin, L. H. (2000). Using heteroscedasticity consistent standard errors in the linear regression model. *The American Statistician*, 54(3), 217–224.
 - Yeo, I.-K.; Johnson, R. A. (2000). A new family of power transformations to improve normality or symmetry. *Biometrika*, 87(4), 954–959.
 - Ramsey, J. B. (1969). Tests for specification errors in classical linear least-squares regression analysis. *Journal of the Royal Statistical Society B*, 31(2), 350–371.
+- Duan, N. (1983). Smearing estimate: a nonparametric retransformation method. *Journal of the American Statistical Association*, 78(383), 605–610.
+- Cameron, A. C.; Miller, D. L. (2015). A practitioner's guide to cluster-robust inference. *Journal of Human Resources*, 50(2), 317–372.
+- Hastie, T.; Tibshirani, R.; Friedman, J. (2009). *The Elements of Statistical Learning*. 2. ed. Springer. (Validação cruzada, cap. 7.)
 - Documentação: [pandas `Series.skew`/`kurt`](https://pandas.pydata.org/docs/reference/api/pandas.Series.skew.html), [scipy `mannwhitneyu`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.mannwhitneyu.html), [scipy `kruskal`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.kruskal.html), [statsmodels `OLSInfluence`](https://www.statsmodels.org/stable/generated/statsmodels.stats.outliers_influence.OLSInfluence.html).
