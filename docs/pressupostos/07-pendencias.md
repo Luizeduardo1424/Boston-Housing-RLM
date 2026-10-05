@@ -8,3 +8,5 @@
 | Modelo final | ajustado na Parte 8 ([Seção 16](08-modelo-final.md)): modelo E sem `ZN`, `INDUS` e `AGE`, sem as 28 linhas influentes, com HC3 |
 | Capacidade preditiva | avaliada por validação cruzada com 10 partes na Parte 8 ([Seção 16](08-modelo-final.md)). Não há conjunto de teste separado |
 | Interações | não testadas (por exemplo, `RM × logLSTAT`), nem a indicadora `ZN > 0` sugerida na Parte 7 |
+
+As tarefas para fechar estas pendências estão descritas, uma por arquivo, em [`docs/tarefas/`](../tarefas/README.md).

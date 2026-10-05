@@ -226,7 +226,8 @@ O projeto será desenvolvido utilizando:
 │   └── figures/                 # gráficos salvos pelo notebook
 │
 ├── docs/
-│   └── pressupostos/            # funções, parâmetros e pressupostos de cada etapa
+│   ├── pressupostos/            # funções, parâmetros e pressupostos de cada etapa
+│   └── tarefas/                 # tarefas pendentes, uma por arquivo
 │
 ├── TERMOS_NAO_LINEARES.md
 ├── requirements.txt
@@ -248,6 +249,10 @@ Gráficos obtidos durante a análise.
 ### `docs/pressupostos/`
 
 Descrição de cada etapa da análise estatística do notebook: funções, parâmetros, pressupostos e o que cada resultado permite concluir. Comece pelo [índice](docs/pressupostos/README.md).
+
+### `docs/tarefas/`
+
+O que ainda falta fazer no projeto, uma tarefa por arquivo, com o contexto, os passos e o critério de pronto. Veja o [índice](docs/tarefas/README.md).
 
 ---
 
