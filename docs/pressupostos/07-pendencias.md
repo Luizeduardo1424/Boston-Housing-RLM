@@ -7,6 +7,6 @@
 | Censura em 50 | tratada pelo modelo Tobit na Parte 10 ([Seção 18](10-tobit.md)): coeficientes a menos de 0,5 erro padrão HC3 do MQO (o efeito de `RM` no MQO está atenuado em 12% a 14%), mesmas conclusões do modelo final e RMSE de validação cruzada 3,83 (contra 4,00). A remoção das linhas censuradas (Parte 6) muda mais e na direção errada. Restam os pressupostos do Tobit: erros normais e variância constante (rejeitada; o Tobit heterocedástico muda os coeficientes em até 0,87 erro padrão) |
 | Modelo final | ajustado na Parte 8 ([Seção 16](08-modelo-final.md)): modelo E sem `ZN`, `INDUS` e `AGE`, sem as 28 linhas influentes, com HC3 |
 | Capacidade preditiva | avaliada por validação cruzada com 10 partes na Parte 8 ([Seção 16](08-modelo-final.md)). Não há conjunto de teste separado |
-| Interações | não testadas (por exemplo, `RM × logLSTAT`), nem a indicadora `ZN > 0` sugerida na Parte 7 |
+| Interações | `RM × logLSTAT` testada na Parte 12 ([Seção 20](12-interacoes.md)): fica fora do modelo final (Wald HC3 p = 0,38; RMSE de validação cruzada 4,02 contra 4,00). O sinal é o esperado e o termo fica significativo sem a linha 365 (alavanca 0,69), mas a previsão não melhora. Resta a indicadora `ZN > 0` sugerida na Parte 7 |
 
 As tarefas para fechar estas pendências estão descritas, uma por arquivo, em [`docs/tarefas/`](../tarefas/README.md).
