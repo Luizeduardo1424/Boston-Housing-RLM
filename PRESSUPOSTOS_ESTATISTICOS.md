@@ -19,7 +19,7 @@ ou seja: média linear em $X$, erros independentes, variância constante e norma
 O notebook tem duas fases:
 
 - **Partes 1 a 4 (EDA, células 0–52):** descrevem as **distribuições marginais** das variáveis. Elas não usam resíduos e só fornecem **indícios** sobre os pressupostos (Seções 2 a 8).
-- **Partes 5 e 6 (modelos, células 53–97):** ajustam modelos por MQO com `statsmodels` e verificam os pressupostos com os **resíduos** (Seções 10 a 14).
+- **Partes 5 a 7 (modelos, células 53–113):** ajustam modelos por MQO com `statsmodels` e verificam os pressupostos com os **resíduos** (Seções 10 a 15).
 
 ### 1.1 Qual resíduo é usado em cada lugar
 
@@ -314,15 +314,64 @@ O RESET da Parte 6 usa o mesmo `power=2` e a mesma covariância não robusta da 
 
 ---
 
-## 14. O que ainda não foi verificado
+## 14. Transformações, centralização e erros robustos (Parte 7, células 98–113)
+
+| Aspecto | Código | Pressuposto ou detalhe |
+|---|---|---|
+| Amostra | `df_t = df_rm.copy()` | a mesma da Parte 6 (n = 501). Todas as especificações usam as mesmas linhas, então os testes são comparáveis |
+| Padronização | `(X − média) / desvio padrão` (`std` do pandas, `ddof=1`) nos 11 preditores numéricos | `CHAS` e `RAD` ficam como indicadoras. É uma mudança afim das colunas: o espaço gerado por $X$ (com intercepto) é o mesmo, então $\hat y$ e os resíduos são idênticos (`np.allclose`) |
+| Box-Cox da resposta | `perfil_boxcox` (célula 102), feita à mão | perfil de verossimilhança $\ell(\lambda) = -\tfrac n2 \log(SQR(\lambda)/n)$ com a resposta dividida por $\dot y^{\lambda-1}$ (média geométrica), em uma grade de −0,6 a 1 com passo 0,01. IC 95% pela razão de verossimilhança ($\chi^2_1$). Supõe que existe um $\lambda$ com erros normais e homocedásticos. Calculado para dois conjuntos de preditores, pois $\hat\lambda$ depende de $X$ |
+| Box-Cox marginal | `stats.boxcox(MEDV)` | $\lambda$ da distribuição de `MEDV` **sem** preditores. Só para comparação: o pressuposto é sobre os erros, não sobre $Y$ |
+| Preditores | `stats.boxcox` (valores > 0) ou `stats.yeojohnson` (`ZN`, com zeros) | $\lambda$ por máxima verossimilhança da distribuição **marginal** de cada preditor. É um guia de simetria; a RLM não supõe preditores normais |
+| Comparação | `diagnosticar` (célula 106) | correlação QQ e Shapiro-Wilk com o resíduo **externo**; assimetria, curtose, Breusch-Pagan, RESET e Durbin-Watson com o **bruto** (iguais aos da Seção 11). AIC só entre modelos com a mesma resposta |
+| Fonte da heterocedasticidade | `ols("e2 ~ ...").wald_test_terms()` | regressão auxiliar de $e^2$ sobre os termos do modelo E, com teste F de cada termo (covariância não robusta). Indica **quais** termos explicam a variância; não é o teste de Breusch-Pagan global |
+| Erros robustos | `fit(cov_type="HC3")` | estimador sanduíche $(X'X)^{-1} X' \operatorname{diag}\!\big(e_i^2/(1-h_{ii})^2\big) X (X'X)^{-1}$. **Não** supõe variância constante, mas supõe erros **independentes**. Os coeficientes são os mesmos do MQO |
+| Testes por termo | `wald_test_terms(scalar=True)` | teste de Wald de cada termo, com `RAD` como bloco de 8 indicadoras. Com HC3, a estatística F usa a covariância robusta |
+
+Resultados que atualizam a Seção 15: com HC3 no modelo E, os erros padrão são em média 23% maiores, mas **nenhuma variável muda de conclusão** a 5%.
+
+### 14.1 Limitação: independência dos erros
+
+**O que o notebook faz.** A independência é verificada só pela **ordem das linhas do arquivo**:
+
+| Onde | Teste | Resultado |
+|---|---|---|
+| Parte 5 (células 67 e 72), modelo completo | teste das sequências e Durbin-Watson (Seção 11.4) | z = −8,11; DW = 0,95 |
+| Parte 5 (continuação), 12 modelos distintos | Durbin-Watson em `avaliar` (Seção 12.2) | DW entre 0,95 e 1,27 |
+| Parte 7 (célula 106), modelos A a E | Durbin-Watson em `diagnosticar` | DW entre 1,09 e 1,19 |
+| Parte 7 (célula 108), modelo E com `log`, `raiz` e λ ótimo | Durbin-Watson em `diagnosticar` | DW entre 1,15 e 1,19 |
+
+Um DW perto de 2 indica ausência de autocorrelação. Valores perto de 1 indicam **autocorrelação positiva**: resíduos de linhas vizinhas têm o mesmo sinal. Como o arquivo está ordenado por região, linhas vizinhas são regiões vizinhas, e o resultado indica **dependência espacial** (Seção 11.4).
+
+**Por que as transformações não resolvem.** Log, Box-Cox, centralização e termos quadráticos mudam a escala e a forma da relação entre as variáveis. Eles não mudam a **relação entre as observações**. Em todas as especificações da Parte 7, o DW fica entre 1,09 e 1,19. A diferença para a Parte 5 (0,95) vem da remoção das 5 linhas suspeitas: o modelo A, ainda sem transformações, já tem DW de 1,09. Remover outliers e pontos influentes (Parte 5, continuação) leva o DW no máximo a 1,27. Assim, a autocorrelação não é causada por alguns pontos atípicos nem pela forma funcional: é dependência entre regiões.
+
+**Por que o HC3 também não resolve.** Os erros padrão HC3 corrigem a variância **não constante**, mas supõem erros **independentes** (matriz de covariância diagonal). Com dependência positiva entre vizinhos, a informação efetiva da amostra é menor que n = 501. Assim, mesmo com HC3, os erros padrão do notebook devem estar **subestimados**, e os p-valores e intervalos de confiança são **otimistas**.
+
+**Consequências para a leitura dos resultados.**
+
+- Os **coeficientes** continuam não viesados (o MQO não exige independência para isso), mas não são os mais eficientes.
+- Os **p-valores** devem ser lidos como **aproximados**. Termos com p-valor perto de 0,05 (`CHAS` e `B` com HC3, Seção 14) são os mais sensíveis a esse problema.
+- O **R²** e os gráficos de diagnóstico continuam válidos como descrição do ajuste. Os **testes** dos outros pressupostos (RESET, Breusch-Pagan, Shapiro-Wilk) também supõem independência, então seus p-valores também são aproximados.
+
+**O que não foi feito.** O conjunto de dados do Kaggle não traz as coordenadas nem o nome da cidade de cada região. Sem isso, não é possível:
+
+- calcular o **I de Moran** dos resíduos, que é o teste direto de dependência espacial;
+- usar **erros padrão agrupados por cidade** (`cov_type="cluster"`) ou **erros padrão espaciais** (Conley);
+- ajustar um **modelo espacial** (defasagem ou erro espacial).
+
+Os erros padrão HAC (Newey-West, `cov_type="HAC"`) usariam a ordem do arquivo como se fosse tempo. Eles não foram usados, pois a ordem é só uma aproximação da vizinhança. Por isso, a independência dos erros fica registrada como **limitação do modelo**.
+
+---
+
+## 15. O que ainda não foi verificado
 
 | Pressuposto ou cuidado | Situação |
 |---|---|
-| Erros padrão robustos (HC3) | recomendados nas conclusões das Partes 5 e 5 (continuação), mas **não aplicados**. Todos os p-valores usam `cov_type='nonrobust'` |
-| Independência espacial | rejeitada pela ordem do arquivo; sem modelo espacial nem erros padrão que considerem a dependência espacial |
+| Erros padrão robustos (HC3) | aplicados **só ao modelo E** da Parte 7 (Seção 14). As Partes 5 e 6 continuam com `cov_type='nonrobust'` |
+| Independência espacial | rejeitada pela ordem do arquivo em todos os modelos (DW entre 0,95 e 1,27). Nenhuma transformação nem o HC3 corrigem. Sem coordenadas, não há I de Moran, erros padrão agrupados ou modelo espacial. Registrada como **limitação** (Seção 14.1) |
 | Censura em 50 | tratada apenas parcialmente (remoção, para verificação). Sem modelo Tobit |
-| Diagnóstico do modelo da Parte 6 | só RESET e resíduos médios por faixa. Não há gráfico QQ, Breusch-Pagan, Durbin-Watson nem medidas de influência para o modelo com `logMEDV` e `RM²` |
-| Modelo final | ainda não definido (falta combinar a remoção S+I da Parte 5 com a forma funcional da Parte 6 e o termo `logLSTAT²`) |
+| Diagnóstico do modelo da Parte 6 | gráfico QQ, Shapiro-Wilk, Breusch-Pagan e Durbin-Watson feitos na Parte 7 (modelos D e E). Ainda faltam as medidas de influência (alavanca, Cook, DFFITS) |
+| Modelo final | forma funcional definida na Parte 7 (modelo E com HC3). Falta combinar com a remoção S+I da Parte 5 |
 | Capacidade preditiva | não avaliada: não há divisão treino/teste nem validação cruzada |
 
 ---
@@ -336,5 +385,8 @@ O RESET da Parte 6 usa o mesmo `power=2` e a mesma covariância não robusta da 
 - Atkinson, A. C. (1985). *Plots, Transformations and Regression*. Oxford University Press.
 - Filliben, J. J. (1975). The probability plot correlation coefficient test for normality. *Technometrics*, 17(1), 111–117.
 - Koenker, R. (1981). A note on studentizing a test for heteroscedasticity. *Journal of Econometrics*, 17(1), 107–112.
+- Box, G. E. P.; Cox, D. R. (1964). An analysis of transformations. *Journal of the Royal Statistical Society B*, 26(2), 211–252.
+- Long, J. S.; Ervin, L. H. (2000). Using heteroscedasticity consistent standard errors in the linear regression model. *The American Statistician*, 54(3), 217–224.
+- Yeo, I.-K.; Johnson, R. A. (2000). A new family of power transformations to improve normality or symmetry. *Biometrika*, 87(4), 954–959.
 - Ramsey, J. B. (1969). Tests for specification errors in classical linear least-squares regression analysis. *Journal of the Royal Statistical Society B*, 31(2), 350–371.
 - Documentação: [pandas `Series.skew`/`kurt`](https://pandas.pydata.org/docs/reference/api/pandas.Series.skew.html), [scipy `mannwhitneyu`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.mannwhitneyu.html), [scipy `kruskal`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.kruskal.html), [statsmodels `OLSInfluence`](https://www.statsmodels.org/stable/generated/statsmodels.stats.outliers_influence.OLSInfluence.html).
