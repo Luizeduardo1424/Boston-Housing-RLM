@@ -39,6 +39,9 @@ Todos estão em `notebooks/EDA.ipynb`. Os índices das células contam a partir 
 | `ajustar_mqgf(dados, forma)` | 132 | MQGF de `formula_final` com pesos $1/\exp(\hat g)$; devolve `(m_wls, aux, m_ols)`. Forma padrão: `logLSTAT` |
 | `variancia_log(m_wls, aux, m_ols, dados)` | 132 | variância estimada de `log(MEDV)` em cada linha |
 | `prever_log_hetero(m_wls, aux, m_ols, dados)` | 138 | previsão em mil dólares com a correção lognormal $e^{\hat y + \hat\sigma^2(x)/2}$ |
+| `Tobit(endog, exog, limite, exog_var=None)` | 144 | regressão censurada (subclasse de `GenericLikelihoodModel`) com censura superior em `limite` e $\log\sigma_i$ = `exog_var` @ $\gamma$. `.fit()` devolve resultados com nomes; `.fit(cov_type="HC0")` dá erros padrão sanduíche |
+| `modelo_tobit` | 148 | Tobit de `formula_final` em `df_t` (501 linhas), limite $\log 50$, variância constante |
+| `prever_tobit(m, X_novo)` | 152 | previsão em mil dólares do valor observado $E[\min(MEDV, 50) \mid x]$ |
 | validação cruzada | 126 | `KFold(n_splits=10, shuffle=True, random_state=42).split(df_t)`, com RMSE, MAE e R² fora da amostra |
 
 Referência para comparar: o modelo final tem RMSE 4,00, MAE 2,75 e R² fora da amostra 0,79 na validação cruzada (Seção 16.1).

@@ -120,7 +120,7 @@ Atenção: BKW propõem escalar as colunas para comprimento unitário **sem cent
 
 | Característica | Pressuposto afetado | Situação no notebook |
 |---|---|---|
-| `MEDV` censurada em 50 (16 obs.) | média linear e erros normais na parte superior. O valor real pode ser maior que 50, então os resíduos dessas linhas são grandes e **positivos** (o modelo prevê 16–30 em 365–372) e as inclinações tendem a ser **atenuadas** | identificada. Na Parte 6, só como verificação (modelo sem `MEDV = 50`); o modelo censurado (Tobit) não foi ajustado |
+| `MEDV` censurada em 50 (16 obs.) | média linear e erros normais na parte superior. O valor real pode ser maior que 50, então os resíduos dessas linhas são grandes e **positivos** (o modelo prevê 16–30 em 365–372) e as inclinações tendem a ser **atenuadas** | identificada. Na Parte 6, só como verificação (modelo sem `MEDV = 50`). Na Parte 10, tratada pelo modelo Tobit ([Seção 18](10-tobit.md)): a atenuação existe nos termos de `RM` (12% a 14%), mas é pequena e não muda as conclusões |
 | 5 linhas suspeitas (índices 506–510) | todas as estimativas por momentos (assimetria, Pearson, VIF, MQO) | mantidas no modelo completo, removidas na sensibilidade (5.9), na seleção (grupo S) e na Parte 6 |
 | 5 `RM` ausentes | número de observações e comparabilidade entre análises | excluídas por linha (`dropna`) em todos os modelos |
 | `ZN` com excesso de zeros | linearidade da relação com `MEDV` | indicadora `ZN > 0` sugerida, não usada |
