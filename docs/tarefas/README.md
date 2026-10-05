@@ -11,8 +11,11 @@ Esta pasta lista o que ainda falta fazer no projeto. Cada arquivo é **uma taref
 | [`10-tobit.md`](../pressupostos/10-tobit.md) (registro) | Ajustar um modelo Tobit para a censura em `MEDV = 50` | média | feita (PR #12) |
 | [`12-interacoes.md`](../pressupostos/12-interacoes.md) (registro) | Testar a interação `RM × logLSTAT` | baixa | feita (PR #14) |
 | [`13-indicadora-zn.md`](../pressupostos/13-indicadora-zn.md) (registro) | Testar a indicadora `ZN > 0` | baixa | feita (PR #15) |
+| [`06-colinearidade-nox-dis.md`](06-colinearidade-nox-dis.md) | Avaliar a colinearidade entre `NOX` e `logDIS` (retirar ou reduzir) e reconfirmar `TAX`/`RAD` | média | pendente |
+| [`08-comparacao-modelos.md`](08-comparacao-modelos.md) | Comparar os modelos possíveis, com e sem transformações, e escolher 2 (um maior e um menor) | média | pendente |
+| [`07-pressupostos-pendentes.md`](07-pressupostos-pendentes.md) | Quadro do que falta para cumprir os pressupostos da RLM e fechar o projeto | alta | pendente |
 
-Todas as tarefas listadas foram feitas: a tarefa 04 (interação `RM × logLSTAT`) na Parte 12 ([Seção 20](../pressupostos/12-interacoes.md)) e a tarefa 05 (indicadora `ZN > 0`) na Parte 13 ([Seção 21](../pressupostos/13-indicadora-zn.md)).
+As tarefas 01 a 05 foram feitas: a tarefa 04 (interação `RM × logLSTAT`) na Parte 12 ([Seção 20](../pressupostos/12-interacoes.md)) e a tarefa 05 (indicadora `ZN > 0`) na Parte 13 ([Seção 21](../pressupostos/13-indicadora-zn.md)). As tarefas 06 a 08 estão pendentes. Ordem sugerida: 06, 08 e por último 07, que usa os resultados das outras duas para fechar o projeto.
 
 ## Antes de começar
 
@@ -26,6 +29,8 @@ Todos estão em `notebooks/EDA.ipynb`. Os índices das células contam a partir 
 
 | Objeto | Célula | O que é |
 |---|---|---|
+| `calcular_vif(df, colunas)`, `calcular_numero_condicao(df, colunas)` | 4 | GVIF de Fox & Monette por termo e número de condição com colunas padronizadas ([Seção 7](../pressupostos/02-eda.md) e [Seção 8](../pressupostos/02-eda.md)) |
+| `perfil_boxcox(dados, lado_direito, lambdas)` | 102 | perfil de verossimilhança do λ de Box-Cox da resposta para um lado direito de fórmula |
 | `df_t` | 100 | dados usados nas Partes 7 e 8: n = 501 (sem as linhas suspeitas 506 a 510 e sem `RM` ausente). Já tem `logMEDV`, `logDIS`, `logLSTAT`, `RM_c` e `logLSTAT_c` |
 | `formula` | Parte 5 | fórmula do modelo linear completo, com `MEDV` na escala original |
 | `formula_final` | 116 | `logMEDV ~ CRIM + C(CHAS) + NOX + logDIS + C(RAD) + PTRATIO + B + logLSTAT + RM_c + I(RM_c**2) + I(logLSTAT_c**2)` |
