@@ -9,10 +9,10 @@ Esta pasta lista o que ainda falta fazer no projeto. Cada arquivo é **uma taref
 | [`09-heterocedasticidade.md`](../pressupostos/09-heterocedasticidade.md) (registro) | Modelar a variância não constante dos erros (MQP/MQGF) | alta | feita (PR #11) |
 | [`11-correlacao-espacial.md`](../pressupostos/11-correlacao-espacial.md) (registro) | Verificar a correlação entre cidades vizinhas com coordenadas | média | feita (PR #13) |
 | [`10-tobit.md`](../pressupostos/10-tobit.md) (registro) | Ajustar um modelo Tobit para a censura em `MEDV = 50` | média | feita (PR #12) |
-| [`04-interacao-rm-lstat.md`](04-interacao-rm-lstat.md) | Testar a interação `RM × logLSTAT` | baixa | aberta |
+| [`12-interacoes.md`](../pressupostos/12-interacoes.md) (registro) | Testar a interação `RM × logLSTAT` | baixa | feita (PR #14) |
 | [`05-indicadora-zn.md`](05-indicadora-zn.md) | Testar a indicadora `ZN > 0` | baixa | aberta |
 
-As tarefas são independentes. As tarefas 04 e 05 são curtas e podem ser feitas juntas, numa mesma parte do notebook.
+As tarefas são independentes. A tarefa 04 (interação `RM × logLSTAT`) foi feita na Parte 12; a tarefa 05 pode seguir o mesmo roteiro ([Seção 20](../pressupostos/12-interacoes.md)).
 
 ## Antes de começar
 

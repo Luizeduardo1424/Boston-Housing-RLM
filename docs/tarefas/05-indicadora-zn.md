@@ -16,7 +16,7 @@ Na Parte 8, `ZN` saiu do modelo junto com `INDUS` e `AGE` (Wald conjunto com HC3
 
 1. **Descrever.** Conte quantas linhas de `df_t` e de `df_final` têm `ZN > 0`. Compare a mediana de `MEDV` nos dois grupos (Mann-Whitney, como na Parte 3). Se um dos grupos tiver poucas linhas (menos de 30), registre que o teste tem pouco poder.
 2. **Fórmula.** `formula_zn = formula_final + " + C(ZN > 0)"`. O patsy aceita a expressão dentro de `C()`. O coeficiente aparece como `C(ZN > 0)[T.True]`.
-3. **Ajuste e teste.** Em `df_final`, com `cov_type="HC3"`. Wald com HC3 para o termo. AIC e BIC com o ajuste MQO não robusto, comparados com o modelo final. Confira, como na Tarefa 04, se as linhas influentes mudam.
+3. **Ajuste e teste.** Em `df_final`, com `cov_type="HC3"`. Wald com HC3 para o termo. AIC e BIC com o ajuste MQO não robusto, comparados com o modelo final. Confira, como na Parte 12 ([Seção 20](../pressupostos/12-interacoes.md)), se as linhas influentes e a alavanca mudam.
 4. **Colinearidade.** `ZN > 0` é ligada a `INDUS`, `NOX` e `DIS` (subúrbios com lotes grandes têm pouca indústria). Calcule o VIF da indicadora e veja se os coeficientes de `NOX` e `logDIS` mudam muito.
 5. **Efeito.** $100 \cdot (e^{\beta} - 1)$: diferença percentual em `MEDV` entre setores com e sem lotes grandes, com o resto fixo. Use o IC 95% com HC3.
 6. **Validação cruzada.** A mesma da célula 126, com as mesmas partes, comparando com o modelo final.
@@ -26,11 +26,11 @@ Na Parte 8, `ZN` saiu do modelo junto com `INDUS` e `AGE` (Wald conjunto com HC3
 - Mantenha a indicadora **só se** o Wald com HC3 der p < 0,05 **e** o RMSE da validação cruzada for menor que 4,00. Caso contrário, registre o resultado e não mude o modelo final.
 - Tabela com o efeito, o IC 95% e o p-valor, e a tabela de validação cruzada.
 
-Esta tarefa pode ser feita junto com a [Tarefa 04](04-interacao-rm-lstat.md), na mesma parte do notebook. Nesse caso, teste também as duas mudanças juntas.
+A interação `RM × logLSTAT` já foi testada na Parte 12 e ficou fora do modelo final ([Seção 20](../pressupostos/12-interacoes.md)). Esta tarefa vira uma nova parte do notebook.
 
 ## Documentação a atualizar
 
-- Novo `docs/pressupostos/NN-interacoes.md` (o mesmo arquivo da Tarefa 04, se feitas juntas), ou `NN-indicadora-zn.md`.
+- Novo `docs/pressupostos/NN-indicadora-zn.md`.
 - `07-pendencias.md`: linha "Interações".
 - `README.md` (raiz), se o modelo final mudar.
 
