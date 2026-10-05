@@ -2,7 +2,7 @@
 
 Este documento descreve os pressupostos estatísticos assumidos em cada etapa do notebook [`notebooks/EDA.ipynb`](../../notebooks/EDA.ipynb). Para cada etapa, ele indica a função de biblioteca usada, os parâmetros efetivamente aplicados (inclusive os padrões implícitos) e o que cada resultado permite ou não concluir. Os números de célula são os índices do notebook (contados a partir de 0).
 
-Versões usadas na execução do notebook (`.venv`): pandas 3.0.6, numpy 2.5.3, scipy 1.18.1, statsmodels 0.15.0, seaborn 0.13.2. Os parâmetros padrão citados foram conferidos no código-fonte dessas versões.
+Versões usadas na execução do notebook (`.venv`): pandas 3.0.6, numpy 2.5.3, scipy 1.18.1, statsmodels 0.15.0, seaborn 0.13.2, scikit-learn, libpysal 4.15.0, esda 2.10.0, spreg 1.9.1. Os parâmetros padrão citados foram conferidos no código-fonte dessas versões.
 
 ---
 
@@ -22,4 +22,5 @@ Leia este índice e abra só o arquivo da seção necessária.
 | [`08-modelo-final.md`](08-modelo-final.md) | §16 | Modelo final: seleção, influentes, HC3, erros agrupados e validação cruzada (Parte 8) |
 | [`09-heterocedasticidade.md`](09-heterocedasticidade.md) | §17 | Heterocedasticidade: forma da variância, MQGF, volta à escala de `MEDV` e cobertura dos intervalos de previsão (Parte 9) |
 | [`10-tobit.md`](10-tobit.md) | §18 | Censura em `MEDV = 50`: modelo Tobit, conferência por simulação, comparação com o MQO e validação cruzada (Parte 10) |
+| [`11-correlacao-espacial.md`](11-correlacao-espacial.md) | §19 | Correlação espacial: coordenadas da versão corrigida, I de Moran, testes LM, modelo de erro espacial e erros agrupados por `TOWN` (Parte 11) |
 | [`referencias.md`](referencias.md) | n/a | Referências |
