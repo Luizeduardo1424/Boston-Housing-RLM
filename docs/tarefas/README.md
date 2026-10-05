@@ -6,7 +6,7 @@ Esta pasta lista o que ainda falta fazer no projeto. Cada arquivo é **uma taref
 
 | Arquivo | Tarefa | Prioridade | Situação |
 |---|---|---|---|
-| [`01-heterocedasticidade.md`](01-heterocedasticidade.md) | Modelar a variância não constante dos erros (MQP/MQGF) | alta | aberta |
+| [`09-heterocedasticidade.md`](../pressupostos/09-heterocedasticidade.md) (registro) | Modelar a variância não constante dos erros (MQP/MQGF) | alta | feita (PR #11) |
 | [`02-correlacao-espacial.md`](02-correlacao-espacial.md) | Verificar a correlação entre cidades vizinhas com coordenadas | média | aberta |
 | [`03-tobit.md`](03-tobit.md) | Ajustar um modelo Tobit para a censura em `MEDV = 50` | média | aberta |
 | [`04-interacao-rm-lstat.md`](04-interacao-rm-lstat.md) | Testar a interação `RM × logLSTAT` | baixa | aberta |
@@ -36,6 +36,9 @@ Todos estão em `notebooks/EDA.ipynb`. Os índices das células contam a partir 
 | `modelo_final` | 118 | `formula_final` em `df_final`, com `cov_type="HC3"` |
 | `cidade` | 122 | grupos de cidade aproximada: `df_final.groupby(["TAX", "PTRATIO", "INDUS", "ZN"]).ngroup()` (78 grupos) |
 | `prever_log(m, dados)` | 126 | previsão em mil dólares: $e^{\hat y}$ vezes o fator de smearing de Duan |
+| `ajustar_mqgf(dados, forma)` | 132 | MQGF de `formula_final` com pesos $1/\exp(\hat g)$; devolve `(m_wls, aux, m_ols)`. Forma padrão: `logLSTAT` |
+| `variancia_log(m_wls, aux, m_ols, dados)` | 132 | variância estimada de `log(MEDV)` em cada linha |
+| `prever_log_hetero(m_wls, aux, m_ols, dados)` | 138 | previsão em mil dólares com a correção lognormal $e^{\hat y + \hat\sigma^2(x)/2}$ |
 | validação cruzada | 126 | `KFold(n_splits=10, shuffle=True, random_state=42).split(df_t)`, com RMSE, MAE e R² fora da amostra |
 
 Referência para comparar: o modelo final tem RMSE 4,00, MAE 2,75 e R² fora da amostra 0,79 na validação cruzada (Seção 16.1).

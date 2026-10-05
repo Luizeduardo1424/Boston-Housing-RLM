@@ -311,7 +311,7 @@ Todos os termos são significativos a 5% com HC3, e também com erros padrão ag
 ```text
 Linearidade:        aceita (RESET p = 0,94)
 Normalidade:        quase normal (correlação QQ 0,993); Shapiro-Wilk ainda rejeita (p = 0,001)
-Homocedasticidade:  rejeitada (Breusch-Pagan p ≈ 10⁻¹¹); tratada com erros padrão HC3
+Homocedasticidade:  rejeitada (Breusch-Pagan p ≈ 10⁻¹¹); inferência com HC3 e variância modelada por MQGF (Parte 9)
 Independência:      rejeitada pela ordem do arquivo (DW = 1,41): dependência entre regiões vizinhas
 Multicolinearidade: sem problema (maior VIF = 4,8, em NOX), após remover TAX e centralizar os quadrados
 ```
@@ -324,10 +324,13 @@ Validação cruzada com 10 partes, erro em mil dólares:
 | --- | --- | --- | --- |
 | Linear completo (Parte 5) | 4,80 | 3,39 | 0,71 |
 | Modelo final | 4,00 | 2,75 | 0,79 |
+| Modelo final por MQGF (Parte 9) | 3,89 | 2,71 | 0,80 |
+
+O MQGF pondera cada casa pelo inverso da variância estimada, que cresce com `LSTAT`. Seus coeficientes ficam próximos aos do modelo final, e os intervalos de previsão de 95% cobrem 95,4% dos valores na validação cruzada (94,4% com variância única). Para previsão, o MQGF é o recomendado ([`docs/pressupostos/09-heterocedasticidade.md`](docs/pressupostos/09-heterocedasticidade.md)).
 
 ### Limitações
 
-* A variância dos erros não é constante. A inferência usa HC3, mas a heterocedasticidade não foi eliminada;
+* A variância dos erros não é constante. Ela foi modelada por MQGF (pesos por `LSTAT`), mas resta uma parte (Breusch-Pagan p ≈ 10⁻⁶), e os intervalos de previsão cobrem só 91% das casas mais baratas;
 * Há correlação espacial entre regiões vizinhas. O conjunto de dados não tem coordenadas para modelá-la;
 * `MEDV` é censurado em 50. A censura foi tratada só em parte (sem modelo Tobit);
 * O ajuste remove 28 casas reais influentes. Para previsão, o modelo deve ser ajustado com todas as linhas.

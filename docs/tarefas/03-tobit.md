@@ -25,7 +25,7 @@ O modelo Tobit (regressão censurada) usa a informação certa: para uma linha c
    - MQO em `df_t` sem as linhas com `MEDV = 50`;
    - Tobit em `df_t`.
    Mostre os coeficientes, os erros padrão e os efeitos em % ($100 \cdot (e^{\beta} - 1)$). Destaque os termos em que o Tobit muda mais, em especial `RM_c`, `I(RM_c**2)` e `logLSTAT`, que explicam as casas caras.
-5. **Pressupostos.** O Tobit supõe erros normais e de variância constante. Com a heterocedasticidade da [Tarefa 01](01-heterocedasticidade.md), os coeficientes do Tobit podem ser viesados. Registre isso. Se possível, use erros padrão robustos (sanduíche) e compare.
+5. **Pressupostos.** O Tobit supõe erros normais e de variância constante. Com a heterocedasticidade ([Seção 17](../pressupostos/09-heterocedasticidade.md): a variância cresce com `LSTAT`), os coeficientes do Tobit podem ser viesados. Registre isso. Se possível, use erros padrão robustos (sanduíche) e compare.
 6. **Opcional.** Validação cruzada com as mesmas partes da célula 126, usando a previsão do valor esperado observado, $E[\min(y, c) \mid x]$, convertida para `MEDV`.
 
 ## Critério de pronto
