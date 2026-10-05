@@ -8,7 +8,7 @@ Esta pasta lista o que ainda falta fazer no projeto. Cada arquivo é **uma taref
 |---|---|---|---|
 | [`09-heterocedasticidade.md`](../pressupostos/09-heterocedasticidade.md) (registro) | Modelar a variância não constante dos erros (MQP/MQGF) | alta | feita (PR #11) |
 | [`02-correlacao-espacial.md`](02-correlacao-espacial.md) | Verificar a correlação entre cidades vizinhas com coordenadas | média | aberta |
-| [`03-tobit.md`](03-tobit.md) | Ajustar um modelo Tobit para a censura em `MEDV = 50` | média | aberta |
+| [`10-tobit.md`](../pressupostos/10-tobit.md) (registro) | Ajustar um modelo Tobit para a censura em `MEDV = 50` | média | feita (PR #12) |
 | [`04-interacao-rm-lstat.md`](04-interacao-rm-lstat.md) | Testar a interação `RM × logLSTAT` | baixa | aberta |
 | [`05-indicadora-zn.md`](05-indicadora-zn.md) | Testar a indicadora `ZN > 0` | baixa | aberta |
 
