@@ -248,6 +248,10 @@ Código auxiliar utilizado no desenvolvimento do projeto.
 
 Resultados obtidos durante a análise, incluindo gráficos e tabelas.
 
+### `docs/pressupostos/`
+
+Descrição de cada etapa da análise estatística do notebook: funções, parâmetros, pressupostos e o que cada resultado permite concluir. Comece pelo [índice](docs/pressupostos/README.md).
+
 ---
 
 ## 📈 Resultados
