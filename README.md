@@ -325,14 +325,17 @@ Validação cruzada com 10 partes, erro em mil dólares:
 | Linear completo (Parte 5) | 4,80 | 3,39 | 0,71 |
 | Modelo final | 4,00 | 2,75 | 0,79 |
 | Modelo final por MQGF (Parte 9) | 3,89 | 2,71 | 0,80 |
+| Modelo Tobit, censura em 50 (Parte 10) | 3,83 | 2,69 | 0,81 |
 
 O MQGF pondera cada casa pelo inverso da variância estimada, que cresce com `LSTAT`. Seus coeficientes ficam próximos aos do modelo final, e os intervalos de previsão de 95% cobrem 95,4% dos valores na validação cruzada (94,4% com variância única). Para previsão, o MQGF é o recomendado ([`docs/pressupostos/09-heterocedasticidade.md`](docs/pressupostos/09-heterocedasticidade.md)).
+
+O Tobit trata as 16 casas com `MEDV = 50` como "50 ou mais" e prevê o valor observado, $\min(MEDV, 50)$. Ele tem o menor erro, mas supõe variância constante, e seus coeficientes ficam a menos de 0,5 erro padrão dos do modelo final ([`docs/pressupostos/10-tobit.md`](docs/pressupostos/10-tobit.md)).
 
 ### Limitações
 
 * A variância dos erros não é constante. Ela foi modelada por MQGF (pesos por `LSTAT`), mas resta uma parte (Breusch-Pagan p ≈ 10⁻⁶), e os intervalos de previsão cobrem só 91% das casas mais baratas;
 * Há correlação espacial entre regiões vizinhas. O conjunto de dados não tem coordenadas para modelá-la;
-* `MEDV` é censurado em 50. A censura foi tratada só em parte (sem modelo Tobit);
+* `MEDV` é censurado em 50. Um modelo Tobit (Parte 10) mostra que a censura não muda as conclusões: o efeito de `RM` no MQO está atenuado em 12% a 14%, menos de 0,5 erro padrão. O Tobit supõe erros normais e de variância constante, o que os resíduos não cumprem por completo;
 * O ajuste remove 28 casas reais influentes. Para previsão, o modelo deve ser ajustado com todas as linhas.
 
 ---
