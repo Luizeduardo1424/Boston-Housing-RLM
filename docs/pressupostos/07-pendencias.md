@@ -2,7 +2,7 @@
 
 | Pressuposto ou cuidado | Situação |
 |---|---|
-| Erros padrão robustos (HC3) | aplicados ao modelo E da Parte 7 ([Seção 14](06-transformacoes.md)) e ao modelo final da Parte 8 ([Seção 16](08-modelo-final.md)). As Partes 5 e 6 continuam com `cov_type='nonrobust'` |
+| Erros padrão robustos (HC3) | aplicados ao modelo E da Parte 7 ([Seção 14](06-transformacoes.md)) e ao modelo final da Parte 8 ([Seção 16](08-modelo-final.md)). As Partes 5 e 6 continuam com `cov_type='nonrobust'`. Na Parte 9 ([Seção 17](09-heterocedasticidade.md)), a variância foi **modelada** por MQGF (pesos por `logLSTAT`): coeficientes próximos aos do MQO, RMSE de validação cruzada 3,89 (contra 4,00) e cobertura de 95,4% dos intervalos de previsão. Resta heterocedasticidade residual (Breusch-Pagan p ≈ 10⁻⁶) e cobertura de 91% nas casas mais baratas |
 | Independência espacial | rejeitada pela ordem do arquivo em todos os modelos (DW entre 0,95 e 1,41). A Parte 8 mostra que a dependência vem da ordem das linhas (DW ≈ 2 com os resíduos em ordem aleatória) e que as conclusões resistem a erros padrão agrupados por cidade aproximada. A correlação **entre** cidades vizinhas não foi verificada: sem coordenadas, não há I de Moran nem modelo espacial. Registrada como **limitação** ([Seção 14.1](06-transformacoes.md)) |
 | Censura em 50 | tratada apenas parcialmente (remoção, para verificação). Sem modelo Tobit |
 | Modelo final | ajustado na Parte 8 ([Seção 16](08-modelo-final.md)): modelo E sem `ZN`, `INDUS` e `AGE`, sem as 28 linhas influentes, com HC3 |

@@ -20,4 +20,5 @@ Leia este índice e abra só o arquivo da seção necessária.
 | [`06-transformacoes.md`](06-transformacoes.md) | §14 | Transformações, centralização, HC3 e independência (Parte 7) |
 | [`07-pendencias.md`](07-pendencias.md) | §15 | O que ainda não foi verificado |
 | [`08-modelo-final.md`](08-modelo-final.md) | §16 | Modelo final: seleção, influentes, HC3, erros agrupados e validação cruzada (Parte 8) |
+| [`09-heterocedasticidade.md`](09-heterocedasticidade.md) | §17 | Heterocedasticidade: forma da variância, MQGF, volta à escala de `MEDV` e cobertura dos intervalos de previsão (Parte 9) |
 | [`referencias.md`](referencias.md) | n/a | Referências |
