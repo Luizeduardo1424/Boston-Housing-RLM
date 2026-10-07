@@ -12,10 +12,10 @@ Esta pasta lista o que ainda falta fazer no projeto. Cada arquivo é **uma taref
 | [`12-interacoes.md`](../pressupostos/12-interacoes.md) (registro) | Testar a interação `RM × logLSTAT` | baixa | feita (PR #14) |
 | [`13-indicadora-zn.md`](../pressupostos/13-indicadora-zn.md) (registro) | Testar a indicadora `ZN > 0` | baixa | feita (PR #15) |
 | [`14-colinearidade.md`](../pressupostos/14-colinearidade.md) (registro) | Avaliar a colinearidade entre `NOX` e `logDIS` (retirar ou reduzir) e reconfirmar `TAX`/`RAD` | média | feita (PR #17) |
-| [`08-comparacao-modelos.md`](08-comparacao-modelos.md) | Comparar os modelos possíveis, com e sem transformações, e escolher 2 (um maior e um menor) | média | pendente |
+| [`15-comparacao-modelos.md`](../pressupostos/15-comparacao-modelos.md) (registro) | Comparar os modelos possíveis, com e sem transformações, e escolher 2 (um maior e um menor) | média | feita (PR #18) |
 | [`07-pressupostos-pendentes.md`](07-pressupostos-pendentes.md) | Quadro do que falta para cumprir os pressupostos da RLM e fechar o projeto | alta | pendente |
 
-As tarefas 01 a 06 foram feitas: a tarefa 04 (interação `RM × logLSTAT`) na Parte 12 ([Seção 20](../pressupostos/12-interacoes.md)), a tarefa 05 (indicadora `ZN > 0`) na Parte 13 ([Seção 21](../pressupostos/13-indicadora-zn.md)) e a tarefa 06 (colinearidade entre `NOX` e `logDIS`) na Parte 14 ([Seção 22](../pressupostos/14-colinearidade.md)). As tarefas 07 e 08 estão pendentes. Ordem sugerida: 08 e por último 07, que usa os resultados das outras duas para fechar o projeto.
+As tarefas 01 a 06 e 08 foram feitas: a tarefa 04 (interação `RM × logLSTAT`) na Parte 12 ([Seção 20](../pressupostos/12-interacoes.md)), a tarefa 05 (indicadora `ZN > 0`) na Parte 13 ([Seção 21](../pressupostos/13-indicadora-zn.md)), a tarefa 06 (colinearidade entre `NOX` e `logDIS`) na Parte 14 ([Seção 22](../pressupostos/14-colinearidade.md)) e a tarefa 08 (comparação dos modelos) na Parte 15 ([Seção 23](../pressupostos/15-comparacao-modelos.md)). Falta só a tarefa 07, que usa os resultados das outras para fechar o projeto.
 
 ## Antes de começar
 
