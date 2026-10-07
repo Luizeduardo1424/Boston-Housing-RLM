@@ -25,4 +25,5 @@ Leia este índice e abra só o arquivo da seção necessária.
 | [`11-correlacao-espacial.md`](11-correlacao-espacial.md) | §19 | Correlação espacial: coordenadas da versão corrigida, I de Moran, testes LM, modelo de erro espacial e erros agrupados por `TOWN` (Parte 11) |
 | [`12-interacoes.md`](12-interacoes.md) | §20 | Interação `RM × logLSTAT`: teste de Wald com HC3, alavanca da linha 365, efeito de um cômodo por quartil de `LSTAT` e validação cruzada (Parte 12) |
 | [`13-indicadora-zn.md`](13-indicadora-zn.md) | §21 | Indicadora `ZN > 0`: Mann-Whitney por grupo, teste de Wald com HC3 e agrupado por cidade, colinearidade com `NOX` e `DIS` e validação cruzada (Parte 13) |
+| [`14-colinearidade.md`](14-colinearidade.md) | §22 | Colinearidade entre `NOX` e `logDIS`: GVIF por termo, retirar variáveis, residualização, índice por componente principal, Ridge, volta de `TAX` e o par `RM_c` × `logLSTAT_c`, com validação cruzada (Parte 14) |
 | [`referencias.md`](referencias.md) | n/a | Referências |
