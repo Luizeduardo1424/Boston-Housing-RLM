@@ -27,4 +27,5 @@ Leia este índice e abra só o arquivo da seção necessária.
 | [`13-indicadora-zn.md`](13-indicadora-zn.md) | §21 | Indicadora `ZN > 0`: Mann-Whitney por grupo, teste de Wald com HC3 e agrupado por cidade, colinearidade com `NOX` e `DIS` e validação cruzada (Parte 13) |
 | [`14-colinearidade.md`](14-colinearidade.md) | §22 | Colinearidade entre `NOX` e `logDIS`: GVIF por termo, retirar variáveis, residualização, índice por componente principal, Ridge, volta de `TAX` e o par `RM_c` × `logLSTAT_c`, com validação cruzada (Parte 14) |
 | [`15-comparacao-modelos.md`](15-comparacao-modelos.md) | §23 | Comparação sistemática dos modelos: busca exaustiva do melhor subconjunto por BIC (3 respostas × 5 esquemas de versões), validação cruzada, escore de pressupostos, escolha dos modelos A e B e comparação com o modelo final (Parte 15) |
+| [`16-pontos-influentes-modelo-final.md`](16-pontos-influentes-modelo-final.md) | §24 | Pontos que pioram o modelo final: linha 414 na ponta esquerda da escala-locação, outliers, 2ª rodada de influentes, reajuste e validação cruzada (Parte 16) |
 | [`referencias.md`](referencias.md) | n/a | Referências |
