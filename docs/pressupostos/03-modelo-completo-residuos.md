@@ -81,6 +81,6 @@ Limitações do envelope:
 
 | Teste | Código | Detalhe e pressupostos |
 |---|---|---|
-| Resíduos × ajustados | `sns.regplot(x=fittedvalues, y=resid, lowess=True)` | resíduo **bruto**. LOWESS robusta com `frac=2/3` e `it=3` (padrões, [Seção 4](02-eda.md)) |
+| Resíduos × ajustados | `curva_lowess(fittedvalues, resid)` (célula 4) | resíduo **bruto**. LOWESS robusta com `frac=2/3` e `it=3` (padrões, [Seção 4](02-eda.md)) |
 | RESET de Ramsey | `linear_reset(modelo, power=2, use_f=True)` | acrescenta **apenas** $\hat y^2$ (o padrão do statsmodels é `power=3`, que acrescenta $\hat y^2$ e $\hat y^3$). Teste F com covariância **não robusta** (`cov_type='nonrobust'`). Detecta curvatura em função de $\hat y$, mas não diz qual variável a causa |
 | Breusch-Pagan | `het_breuschpagan(modelo.resid, modelo.model.exog)` | resíduo **bruto**. O padrão `robust=True` usa a versão de **Koenker** (LM = $n R^2$ da regressão de $e^2$ sobre as colunas), que **não supõe erros normais**. As variáveis auxiliares são as próprias colunas do modelo, inclusive as indicadoras. O notebook usa o LM e seu p-valor $\chi^2_{20}$ |

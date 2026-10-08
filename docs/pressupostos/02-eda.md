@@ -16,7 +16,7 @@ Pressuposto implícito: a distância de 8 para 24 em `RAD` não é interpretáve
 |---|---|---|---|
 | Assimetria | `Series.skew()` (pandas) | coeficiente de Fisher–Pearson **ajustado** $G_1$, com correção de viés amostral | 0 |
 | Curtose | `Series.kurt()` (pandas) | curtose **em excesso**, com correção de viés (Fisher) | **0** (e não 3) |
-| Densidade | `sns.histplot(kde=True)` | KDE gaussiano, largura de banda pela regra de **Scott** (`bw_method='scott'`, `bw_adjust=1`) | n/a |
+| Densidade | `scipy.stats.gaussian_kde` (célula 4) | KDE gaussiano, largura de banda pela regra de **Scott** (padrão), na escala da frequência; classes do histograma pela regra `auto` do numpy | n/a |
 
 Observações:
 
@@ -37,13 +37,13 @@ Transformações (célula 25):
 
 ## 4. Linearidade exploratória (células 29–30)
 
-Função: `sns.regplot(..., lowess=True)`. O seaborn chama `statsmodels.nonparametric.smoothers_lowess.lowess(y, x)` **com os parâmetros padrão**:
+Função: `curva_lowess(x, y)` (célula 4), que chama `statsmodels.nonparametric.smoothers_lowess.lowess(y, x, frac=2/3)` **com os parâmetros padrão**:
 
 | Parâmetro | Valor | Significado |
 |---|---|---|
 | `frac` | 2/3 | cada ajuste local usa 2/3 das observações (curva bastante suave) |
 | `it` | 3 | 3 iterações **robustas** (pesos bisquare), que reduzem o peso de valores extremos |
-| intervalo de confiança | não desenhado | o seaborn não calcula IC quando `lowess=True` |
+| intervalo de confiança | não desenhado | a LOWESS não dá IC |
 | ausentes | removidos | linhas com `NaN` em `x` ou `y` são descartadas |
 
 Limitações:

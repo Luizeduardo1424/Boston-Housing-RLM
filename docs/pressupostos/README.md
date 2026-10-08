@@ -2,7 +2,9 @@
 
 Este documento descreve os pressupostos estatísticos assumidos em cada etapa do notebook [`notebooks/EDA.ipynb`](../../notebooks/EDA.ipynb). Para cada etapa, ele indica a função de biblioteca usada, os parâmetros efetivamente aplicados (inclusive os padrões implícitos) e o que cada resultado permite ou não concluir. Os números de célula são os índices do notebook (contados a partir de 0).
 
-Versões usadas na execução do notebook (`.venv`): pandas 3.0.6, numpy 2.5.3, scipy 1.18.1, statsmodels 0.15.0, seaborn 0.13.2, scikit-learn, libpysal 4.15.0, esda 2.10.0, spreg 1.9.1. Os parâmetros padrão citados foram conferidos no código-fonte dessas versões.
+Os gráficos são interativos (Plotly). Ao passar o mouse sobre um ponto, o gráfico mostra a linha do arquivo, a cidade (`TOWN`), os valores do gráfico (ajustado, resíduo, alavanca, Cook) e `MEDV`, `CRIM`, `RM`, `LSTAT` e `RAD`. As curvas LOWESS e as linhas de referência também mostram o valor. As funções de gráfico ficam na célula 4 e cada figura é salva em `results/figures/*.html`.
+
+Versões usadas na execução do notebook (`.venv`): pandas 3.0.6, numpy 2.5.3, scipy 1.18.1, statsmodels 0.15.0, plotly 7.1.0, scikit-learn, libpysal 4.15.0, esda 2.10.0, spreg 1.9.1. Os parâmetros padrão citados foram conferidos no código-fonte dessas versões.
 
 ---
 

@@ -1,8 +1,7 @@
 jupyter
 pandas
 numpy
-matplotlib
-seaborn
+plotly
 scipy
 statsmodels
 scikit-learn

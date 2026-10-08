@@ -203,8 +203,7 @@ O projeto será desenvolvido utilizando:
 * **Jupyter Notebook**
 * **Pandas**
 * **NumPy**
-* **Matplotlib**
-* **Seaborn**
+* **Plotly** (gráficos interativos)
 * **SciPy**
 * **Statsmodels**
 * **Scikit-learn**
@@ -225,7 +224,7 @@ O projeto será desenvolvido utilizando:
 │   └── EDA.ipynb                # análise completa (Partes 1 a 11)
 │
 ├── results/
-│   └── figures/                 # gráficos salvos pelo notebook
+│   └── figures/                 # gráficos interativos (.html) salvos pelo notebook
 │
 ├── docs/
 │   ├── pressupostos/            # funções, parâmetros e pressupostos de cada etapa
@@ -248,7 +247,7 @@ Contém o notebook com a análise exploratória, a construção do modelo, o dia
 
 ### `results/`
 
-Gráficos obtidos durante a análise.
+Gráficos obtidos durante a análise, em HTML interativo (abra no navegador e passe o mouse sobre os pontos), e tabelas em CSV.
 
 ### `docs/pressupostos/`
 
