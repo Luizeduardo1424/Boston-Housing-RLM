@@ -1,13 +1,15 @@
-## 14. Transformações, centralização e erros robustos (Parte 7, células 98–113)
+## 14. Transformações, centralização e erros robustos (Parte 7, células 47–62)
+
+Células do notebook [`02-MRLM.ipynb`](../../notebooks/02-MRLM.ipynb).
 
 | Aspecto | Código | Pressuposto ou detalhe |
 |---|---|---|
 | Amostra | `df_t = df_rm.copy()` | a mesma da Parte 6 (n = 501). Todas as especificações usam as mesmas linhas, então os testes são comparáveis |
 | Padronização | `(X − média) / desvio padrão` (`std` do pandas, `ddof=1`) nos 11 preditores numéricos | `CHAS` e `RAD` ficam como indicadoras. É uma mudança afim das colunas: o espaço gerado por $X$ (com intercepto) é o mesmo, então $\hat y$ e os resíduos são idênticos (`np.allclose`) |
-| Box-Cox da resposta | `perfil_boxcox` (célula 102), feita à mão | perfil de verossimilhança $\ell(\lambda) = -\tfrac n2 \log(SQR(\lambda)/n)$ com a resposta dividida por $\dot y^{\lambda-1}$ (média geométrica), em uma grade de −0,6 a 1 com passo 0,01. IC 95% pela razão de verossimilhança ($\chi^2_1$). Supõe que existe um $\lambda$ com erros normais e homocedásticos. Calculado para dois conjuntos de preditores, pois $\hat\lambda$ depende de $X$ |
+| Box-Cox da resposta | `perfil_boxcox` (célula 51), feita à mão | perfil de verossimilhança $\ell(\lambda) = -\tfrac n2 \log(SQR(\lambda)/n)$ com a resposta dividida por $\dot y^{\lambda-1}$ (média geométrica), em uma grade de −0,6 a 1 com passo 0,01. IC 95% pela razão de verossimilhança ($\chi^2_1$). Supõe que existe um $\lambda$ com erros normais e homocedásticos. Calculado para dois conjuntos de preditores, pois $\hat\lambda$ depende de $X$ |
 | Box-Cox marginal | `stats.boxcox(MEDV)` | $\lambda$ da distribuição de `MEDV` **sem** preditores. Só para comparação: o pressuposto é sobre os erros, não sobre $Y$ |
 | Preditores | `stats.boxcox` (valores > 0) ou `stats.yeojohnson` (`ZN`, com zeros) | $\lambda$ por máxima verossimilhança da distribuição **marginal** de cada preditor. É um guia de simetria; a RLM não supõe preditores normais |
-| Comparação | `diagnosticar` (célula 106) | correlação QQ e Shapiro-Wilk com o resíduo **externo**; assimetria, curtose, Breusch-Pagan, RESET e Durbin-Watson com o **bruto** (iguais aos da [Seção 11](03-modelo-completo-residuos.md)). AIC só entre modelos com a mesma resposta |
+| Comparação | `diagnosticar` (célula 55) | correlação QQ e Shapiro-Wilk com o resíduo **externo**; assimetria, curtose, Breusch-Pagan, RESET e Durbin-Watson com o **bruto** (iguais aos da [Seção 11](03-modelo-completo-residuos.md)). AIC só entre modelos com a mesma resposta |
 | Fonte da heterocedasticidade | `ols("e2 ~ ...").wald_test_terms()` | regressão auxiliar de $e^2$ sobre os termos do modelo E, com teste F de cada termo (covariância não robusta). Indica **quais** termos explicam a variância; não é o teste de Breusch-Pagan global |
 | Erros robustos | `fit(cov_type="HC3")` | estimador sanduíche $(X'X)^{-1} X' \operatorname{diag}\!\big(e_i^2/(1-h_{ii})^2\big) X (X'X)^{-1}$. **Não** supõe variância constante, mas supõe erros **independentes**. Os coeficientes são os mesmos do MQO |
 | Testes por termo | `wald_test_terms(scalar=True)` | teste de Wald de cada termo, com `RAD` como bloco de 8 indicadoras. Com HC3, a estatística F usa a covariância robusta |
@@ -20,10 +22,10 @@ Resultados que atualizam a [Seção 15](07-pendencias.md): com HC3 no modelo E, 
 
 | Onde | Teste | Resultado |
 |---|---|---|
-| Parte 5 (células 67 e 72), modelo completo | teste das sequências e Durbin-Watson ([Seção 11.4](03-modelo-completo-residuos.md)) | z = −8,11; DW = 0,95 |
+| Parte 5 (células 16 e 21), modelo completo | teste das sequências e Durbin-Watson ([Seção 11.4](03-modelo-completo-residuos.md)) | z = −8,11; DW = 0,95 |
 | Parte 5 (continuação), 12 modelos distintos | Durbin-Watson em `avaliar` ([Seção 12.2](04-selecao-modelos.md)) | DW entre 0,95 e 1,27 |
-| Parte 7 (célula 106), modelos A a E | Durbin-Watson em `diagnosticar` | DW entre 1,09 e 1,19 |
-| Parte 7 (célula 108), modelo E com `log`, `raiz` e λ ótimo | Durbin-Watson em `diagnosticar` | DW entre 1,15 e 1,19 |
+| Parte 7 (célula 55), modelos A a E | Durbin-Watson em `diagnosticar` | DW entre 1,09 e 1,19 |
+| Parte 7 (célula 57), modelo E com `log`, `raiz` e λ ótimo | Durbin-Watson em `diagnosticar` | DW entre 1,15 e 1,19 |
 
 Um DW perto de 2 indica ausência de autocorrelação. Valores perto de 1 indicam **autocorrelação positiva**: resíduos de linhas vizinhas têm o mesmo sinal. Como o arquivo está ordenado por região, linhas vizinhas são regiões vizinhas, e o resultado indica **dependência espacial** ([Seção 11.4](03-modelo-completo-residuos.md)).
 

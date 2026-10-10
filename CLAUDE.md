@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-Projeto acadêmico de regressão linear múltipla (Boston Housing). A análise está em `notebooks/EDA.ipynb`. Língua do projeto: português.
+Projeto acadêmico de regressão linear múltipla (Boston Housing). A análise está em dois notebooks: `notebooks/01-AED.ipynb` (análise exploratória, Partes 1 a 4) e `notebooks/02-MRLM.ipynb` (modelo de regressão linear múltipla, Partes 5 a 12). As funções de gráfico ficam em `notebooks/graficos.py`. Língua do projeto: português.
 
 ## Documentação da análise estatística
 

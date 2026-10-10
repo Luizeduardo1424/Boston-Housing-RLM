@@ -221,10 +221,12 @@ O projeto será desenvolvido utilizando:
 │   └── boston_corrected.csv     # versão corrigida com cidade e coordenadas (506 linhas)
 │
 ├── notebooks/
-│   └── EDA.ipynb                # análise completa (Partes 1 a 11)
+│   ├── 01-AED.ipynb             # análise exploratória (Partes 1 a 4)
+│   ├── 02-MRLM.ipynb            # modelo de regressão linear múltipla (Partes 5 a 12)
+│   └── graficos.py              # funções de gráfico usadas pelos dois notebooks
 │
 ├── results/
-│   └── figures/                 # gráficos interativos (.html) salvos pelo notebook
+│   └── figures/                 # gráficos interativos (.html) salvos pelos notebooks
 │
 ├── docs/
 │   ├── pressupostos/            # funções, parâmetros e pressupostos de cada etapa
@@ -243,7 +245,12 @@ Contém o dataset utilizado no trabalho e a versão com as variáveis transforma
 
 ### `notebooks/`
 
-Contém o notebook com a análise exploratória, a construção do modelo, o diagnóstico e o modelo final.
+Contém os dois notebooks da análise. Rode-os nesta ordem:
+
+1. `01-AED.ipynb`: análise exploratória (Partes 1 a 4). No final, salva `data/housing_processed.csv`.
+2. `02-MRLM.ipynb`: lê `data/housing_processed.csv` e faz a construção do modelo, o diagnóstico e o modelo final (Partes 5 a 12).
+
+`graficos.py` tem as funções de gráfico (Plotly) usadas pelos dois notebooks.
 
 ### `results/`
 
@@ -251,7 +258,7 @@ Gráficos obtidos durante a análise, em HTML interativo (abra no navegador e pa
 
 ### `docs/pressupostos/`
 
-Descrição de cada etapa da análise estatística do notebook: funções, parâmetros, pressupostos e o que cada resultado permite concluir. Comece pelo [índice](docs/pressupostos/README.md).
+Descrição de cada etapa da análise estatística dos notebooks: funções, parâmetros, pressupostos e o que cada resultado permite concluir. Comece pelo [índice](docs/pressupostos/README.md).
 
 ### `docs/tarefas/`
 
@@ -261,7 +268,7 @@ O que ainda falta fazer no projeto, uma tarefa por arquivo, com o contexto, os p
 
 ## 📈 Resultados
 
-Os resultados abaixo são do modelo final (Parte 8 do notebook). Os detalhes estão em [`docs/pressupostos/08-modelo-final.md`](docs/pressupostos/08-modelo-final.md).
+Os resultados abaixo são do modelo final (Parte 8, notebook `02-MRLM.ipynb`). Os detalhes estão em [`docs/pressupostos/08-modelo-final.md`](docs/pressupostos/08-modelo-final.md).
 
 ### Modelo ajustado
 

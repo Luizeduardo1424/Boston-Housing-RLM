@@ -1,10 +1,12 @@
-## 12. Análise de sensibilidade e seleção de modelos (células 75–84)
+## 12. Análise de sensibilidade e seleção de modelos (células 24–33)
 
-### 12.1 Sensibilidade sem as linhas suspeitas (célula 76)
+Células do notebook [`02-MRLM.ipynb`](../../notebooks/02-MRLM.ipynb).
+
+### 12.1 Sensibilidade sem as linhas suspeitas (célula 25)
 
 O modelo é reajustado sem os índices 506–510 (n = 501). A função `resumir` usa o resíduo **bruto** no Shapiro-Wilk, o interno na faixa 2–3 e o externo em $\lvert t \rvert > 3$. O corte de alavanca usa o mesmo p e o n de cada modelo.
 
-### 12.2 Seleção entre 16 combinações de remoção (células 80–84)
+### 12.2 Seleção entre 16 combinações de remoção (células 29–33)
 
 | Aspecto | Detalhe |
 |---|---|

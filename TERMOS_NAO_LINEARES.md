@@ -189,7 +189,7 @@ Na fórmula, `I(RM_c**2)` cria a potência e `RM_c:PTRATIO_c` cria somente o pro
 
 ## 7. Por que `RM²` centralizado faz sentido
 
-A ideia em uma frase: **um cômodo a mais não vale o mesmo em todas as casas.** Uma reta obriga um valor fixo por cômodo. O termo `RM²` deixa esse valor mudar com o tamanho da casa. O cálculo completo está na **Parte 6** de `notebooks/EDA.ipynb` (mesmos dados da seção 5: 501 observações, resposta `logMEDV`).
+A ideia em uma frase: **um cômodo a mais não vale o mesmo em todas as casas.** Uma reta obriga um valor fixo por cômodo. O termo `RM²` deixa esse valor mudar com o tamanho da casa. O cálculo completo está na **Parte 6** de `notebooks/02-MRLM.ipynb` (mesmos dados da seção 5: 501 observações, resposta `logMEDV`).
 
 ### 7.1 Os dados mostram uma curva, não uma reta
 

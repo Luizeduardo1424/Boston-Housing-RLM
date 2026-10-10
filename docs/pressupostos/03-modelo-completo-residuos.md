@@ -1,4 +1,6 @@
-## 10. Modelo completo (Parte 5, células 53–57)
+## 10. Modelo completo (Parte 5, células 2–6)
+
+Células do notebook [`02-MRLM.ipynb`](../../notebooks/02-MRLM.ipynb).
 
 ### 10.1 Especificação
 
@@ -26,9 +28,9 @@ Essa fórmula **supõe erros homocedásticos e independentes**. O próprio noteb
 
 ---
 
-## 11. Diagnóstico dos resíduos (Parte 5, células 58–74)
+## 11. Diagnóstico dos resíduos (Parte 5, células 7–23)
 
-### 11.1 Medidas por observação (célula 59)
+### 11.1 Medidas por observação (célula 8)
 
 | Medida | Código | Corte usado | Observação |
 |---|---|---|---|
@@ -38,19 +40,19 @@ Essa fórmula **supõe erros homocedásticos e independentes**. O próprio noteb
 
 Os cortes $4/n$, $2p/n$ e $2\sqrt{p/n}$ são **regras práticas** e não testes: com n = 506, sempre haverá observações acima deles.
 
-### 11.2 Outliers (célula 64)
+### 11.2 Outliers (célula 13)
 
 - $\lvert t_i \rvert > 3$ usa o resíduo **studentizado externo**.
 - A quantidade esperada ($n \cdot 2P(Z > 3) \approx 1{,}4$) usa a **normal padrão**. O resíduo externo segue $t_{n-p-1} = t_{484}$, mas a diferença é desprezível com 484 GL.
 - `modelo.outlier_test(method="bonf")`: p-valor bilateral de cada $t_i$ pela distribuição $t$ com `df_resid − 1` = 484 GL, multiplicado por n (Bonferroni, `multipletests`). Supõe **erros normais**: com caudas pesadas, como aqui, o teste aponta mais outliers.
 
-### 11.3 Faixa $2 < \lvert r \rvert \le 3$ (célula 67)
+### 11.3 Faixa $2 < \lvert r \rvert \le 3$ (célula 16)
 
 - Usa o resíduo **studentizado interno**. A probabilidade de referência (4,3%) vem da normal padrão. O resíduo interno não é exatamente normal (é limitado a $\lvert r_i \rvert \le \sqrt{n-p}$), mas a aproximação é boa com n = 506.
 - `stats.binomtest(k, n, p)`: teste binomial **exato e bilateral** (padrão `alternative='two-sided'`). Supõe que as n observações caiam na faixa de forma **independente**, o que é discutível porque os resíduos são correlacionados (matriz $I - H$) e há autocorrelação.
 - O notebook observa que poucos pontos na faixa não indicam bom ajuste: os outliers extremos inflam $\hat\sigma$ e reduzem todos os $r_i$.
 
-### 11.4 Independência (células 67 e 72)
+### 11.4 Independência (células 16 e 21)
 
 | Teste | Código | Detalhe |
 |---|---|---|
@@ -59,7 +61,7 @@ Os cortes $4/n$, $2p/n$ e $2\sqrt{p/n}$ são **regras práticas** e não testes:
 
 Os dois testes **só fazem sentido se a ordem das linhas tiver significado**. Aqui o arquivo está ordenado por região, então eles detectam **dependência espacial** entre regiões vizinhas. Se as linhas fossem embaralhadas, os dois testes deixariam de detectar essa dependência, mas ela continuaria existindo. Um teste espacial (I de Moran com coordenadas) seria a verificação direta, e não foi feito.
 
-### 11.5 Normalidade (célula 70)
+### 11.5 Normalidade (célula 19)
 
 | Elemento | Detalhe |
 |---|---|
@@ -77,10 +79,10 @@ Limitações do envelope:
 - Ele é uma **simplificação** do envelope de Atkinson (1985). As amostras são iid, mas os resíduos do modelo são correlacionados ($I - H$) e não têm exatamente a distribuição $N(0,1)$. O envelope de Atkinson simula novas respostas a partir do modelo ajustado, reajusta o modelo e calcula os resíduos de novo.
 - As bandas são **pontuais**: mesmo com resíduos normais, espera-se que cerca de 5% dos pontos fiquem fora. Por isso, os 78% fora do envelope indicam um desvio real, mas um valor próximo de 5% não seria evidência contra a normalidade.
 
-### 11.6 Linearidade e homocedasticidade (célula 72)
+### 11.6 Linearidade e homocedasticidade (célula 21)
 
 | Teste | Código | Detalhe e pressupostos |
 |---|---|---|
-| Resíduos × ajustados | `curva_lowess(fittedvalues, resid)` (célula 4) | resíduo **bruto**. LOWESS robusta com `frac=2/3` e `it=3` (padrões, [Seção 4](02-eda.md)) |
+| Resíduos × ajustados | `curva_lowess(fittedvalues, resid)` (`graficos.py`) | resíduo **bruto**. LOWESS robusta com `frac=2/3` e `it=3` (padrões, [Seção 4](02-eda.md)) |
 | RESET de Ramsey | `linear_reset(modelo, power=2, use_f=True)` | acrescenta **apenas** $\hat y^2$ (o padrão do statsmodels é `power=3`, que acrescenta $\hat y^2$ e $\hat y^3$). Teste F com covariância **não robusta** (`cov_type='nonrobust'`). Detecta curvatura em função de $\hat y$, mas não diz qual variável a causa |
 | Breusch-Pagan | `het_breuschpagan(modelo.resid, modelo.model.exog)` | resíduo **bruto**. O padrão `robust=True` usa a versão de **Koenker** (LM = $n R^2$ da regressão de $e^2$ sobre as colunas), que **não supõe erros normais**. As variáveis auxiliares são as próprias colunas do modelo, inclusive as indicadoras. O notebook usa o LM e seu p-valor $\chi^2_{20}$ |
