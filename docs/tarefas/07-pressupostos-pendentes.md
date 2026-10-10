@@ -20,7 +20,7 @@ Esta tarefa é de análise e documentação. Ela só acrescenta células ao note
 | Independência | DW 1,41 pela ordem do arquivo; I de Moran 0,32 (p = 0,001); o modelo de erro espacial (SEM) remove a correlação | [Seção 19](../pressupostos/11-correlacao-espacial.md) |
 | Homocedasticidade | Breusch-Pagan p ≈ 10⁻¹¹; HC3 na inferência; MQGF reduz, mas resta BP p ≈ 10⁻⁶ e cobertura de 91% nas casas baratas | [Seção 17](../pressupostos/09-heterocedasticidade.md) |
 | Normalidade | correlação QQ 0,993; Shapiro-Wilk p = 0,001; curtose 1,3 | [Seção 16.1](../pressupostos/08-modelo-final.md) |
-| Multicolinearidade | VIF máximo 4,8 (`NOX`); `TAX` fora | [Seção 16.1](../pressupostos/08-modelo-final.md), [Seção 22](../pressupostos/14-colinearidade.md) |
+| Multicolinearidade | VIF máximo 4,8 (`NOX`); `TAX` fora | [Seção 16.1](../pressupostos/08-modelo-final.md) |
 | Influentes | 28 linhas removidas na estimação; a previsão usa todas as linhas | [Seção 16](../pressupostos/08-modelo-final.md) |
 | Censura em 50 | Tobit: mesmas conclusões, atenuação de 12% a 14% em `RM` | [Seção 18](../pressupostos/10-tobit.md) |
 
@@ -39,7 +39,7 @@ Esta tarefa é de análise e documentação. Ela só acrescenta células ao note
    - não há conjunto de teste separado, só validação cruzada.
    Se um item puder ser fechado com uma célula curta (por exemplo, bootstrap dos IC do modelo final, ou SEM na validação cruzada), faça isso em uma nova parte do notebook.
 3. **Objetivos específicos.** Confira um a um os objetivos do `README.md` (linhas 21 a 33) e indique a célula ou seção que cumpre cada um. Liste os que não estão cumpridos.
-4. **Modelo de entrega.** Decida qual modelo é o principal do trabalho (MQO com HC3, MQGF, Tobit ou SEM) e como os outros entram, como análise de robustez. Justifique pela lista de pressupostos e pela validação cruzada. Use também o resultado da Tarefa 08 ([Seção 23](../pressupostos/15-comparacao-modelos.md)).
+4. **Modelo de entrega.** Decida qual modelo é o principal do trabalho (MQO com HC3, MQGF, Tobit ou SEM) e como os outros entram, como análise de robustez. Justifique pela lista de pressupostos e pela validação cruzada.
 5. **Texto final.** Reescreva as seções "Resultados" e "Limitações" do `README.md` da raiz para refletir o quadro.
 
 ## Critério de pronto

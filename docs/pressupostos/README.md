@@ -25,9 +25,7 @@ Leia este índice e abra só o arquivo da seção necessária.
 | [`09-heterocedasticidade.md`](09-heterocedasticidade.md) | §17 | Heterocedasticidade: forma da variância, MQGF, volta à escala de `MEDV` e cobertura dos intervalos de previsão (Parte 9) |
 | [`10-tobit.md`](10-tobit.md) | §18 | Censura em `MEDV = 50`: modelo Tobit, conferência por simulação, comparação com o MQO e validação cruzada (Parte 10) |
 | [`11-correlacao-espacial.md`](11-correlacao-espacial.md) | §19 | Correlação espacial: coordenadas da versão corrigida, I de Moran, testes LM, modelo de erro espacial e erros agrupados por `TOWN` (Parte 11) |
-| [`12-interacoes.md`](12-interacoes.md) | §20 | Interação `RM × logLSTAT`: teste de Wald com HC3, alavanca da linha 365, efeito de um cômodo por quartil de `LSTAT` e validação cruzada (Parte 12) |
-| [`13-indicadora-zn.md`](13-indicadora-zn.md) | §21 | Indicadora `ZN > 0`: Mann-Whitney por grupo, teste de Wald com HC3 e agrupado por cidade, colinearidade com `NOX` e `DIS` e validação cruzada (Parte 13) |
-| [`14-colinearidade.md`](14-colinearidade.md) | §22 | Colinearidade entre `NOX` e `logDIS`: GVIF por termo, retirar variáveis, residualização, índice por componente principal, Ridge, volta de `TAX` e o par `RM_c` × `logLSTAT_c`, com validação cruzada (Parte 14) |
-| [`15-comparacao-modelos.md`](15-comparacao-modelos.md) | §23 | Comparação sistemática dos modelos: busca exaustiva do melhor subconjunto por BIC (3 respostas × 5 esquemas de versões), validação cruzada, escore de pressupostos, escolha dos modelos A e B e comparação com o modelo final (Parte 15) |
-| [`16-pontos-influentes-modelo-final.md`](16-pontos-influentes-modelo-final.md) | §24 | Pontos que pioram o modelo final: linha 414 na ponta esquerda da escala-locação, outliers, 2ª rodada de influentes, reajuste e validação cruzada (Parte 16) |
+| [`16-pontos-influentes-modelo-final.md`](16-pontos-influentes-modelo-final.md) | §24 | Pontos que pioram o modelo final: linha 414 na ponta esquerda da escala-locação, outliers, 2ª rodada de influentes, reajuste e validação cruzada (Parte 12 do notebook) |
 | [`referencias.md`](referencias.md) | n/a | Referências |
+
+As seções §20 a §23 (interação `RM × logLSTAT`, indicadora `ZN > 0`, colinearidade entre `NOX` e `logDIS` e comparação sistemática dos modelos) foram retiradas do notebook: eram hipóteses de melhoria que não mudaram o modelo final. Os números das outras seções não mudam. A antiga Parte 16 do notebook passou a ser a Parte 12.
