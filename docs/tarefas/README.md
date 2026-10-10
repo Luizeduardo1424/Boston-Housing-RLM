@@ -9,13 +9,9 @@ Esta pasta lista o que ainda falta fazer no projeto. Cada arquivo é **uma taref
 | [`09-heterocedasticidade.md`](../pressupostos/09-heterocedasticidade.md) (registro) | Modelar a variância não constante dos erros (MQP/MQGF) | alta | feita (PR #11) |
 | [`11-correlacao-espacial.md`](../pressupostos/11-correlacao-espacial.md) (registro) | Verificar a correlação entre cidades vizinhas com coordenadas | média | feita (PR #13) |
 | [`10-tobit.md`](../pressupostos/10-tobit.md) (registro) | Ajustar um modelo Tobit para a censura em `MEDV = 50` | média | feita (PR #12) |
-| [`12-interacoes.md`](../pressupostos/12-interacoes.md) (registro) | Testar a interação `RM × logLSTAT` | baixa | feita (PR #14) |
-| [`13-indicadora-zn.md`](../pressupostos/13-indicadora-zn.md) (registro) | Testar a indicadora `ZN > 0` | baixa | feita (PR #15) |
-| [`14-colinearidade.md`](../pressupostos/14-colinearidade.md) (registro) | Avaliar a colinearidade entre `NOX` e `logDIS` (retirar ou reduzir) e reconfirmar `TAX`/`RAD` | média | feita (PR #17) |
-| [`15-comparacao-modelos.md`](../pressupostos/15-comparacao-modelos.md) (registro) | Comparar os modelos possíveis, com e sem transformações, e escolher 2 (um maior e um menor) | média | feita (PR #18) |
 | [`07-pressupostos-pendentes.md`](07-pressupostos-pendentes.md) | Quadro do que falta para cumprir os pressupostos da RLM e fechar o projeto | alta | pendente |
 
-As tarefas 01 a 06 e 08 foram feitas: a tarefa 04 (interação `RM × logLSTAT`) na Parte 12 ([Seção 20](../pressupostos/12-interacoes.md)), a tarefa 05 (indicadora `ZN > 0`) na Parte 13 ([Seção 21](../pressupostos/13-indicadora-zn.md)), a tarefa 06 (colinearidade entre `NOX` e `logDIS`) na Parte 14 ([Seção 22](../pressupostos/14-colinearidade.md)) e a tarefa 08 (comparação dos modelos) na Parte 15 ([Seção 23](../pressupostos/15-comparacao-modelos.md)). Falta só a tarefa 07, que usa os resultados das outras para fechar o projeto.
+As tarefas 01 a 06 e 08 foram feitas. As tarefas 04 (interação `RM × logLSTAT`), 05 (indicadora `ZN > 0`), 06 (colinearidade entre `NOX` e `logDIS`) e 08 (comparação dos modelos) não mudaram o modelo final e foram retiradas do notebook (antigas Partes 12 a 15). Falta só a tarefa 07, que usa os resultados das outras para fechar o projeto.
 
 ## Antes de começar
 
