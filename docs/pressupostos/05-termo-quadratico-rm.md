@@ -1,4 +1,6 @@
-## 13. Termo quadrático de `RM` (Parte 6, células 85–97)
+## 13. Termo quadrático de `RM` (Parte 6, células 34–46)
+
+Células do notebook [`02-MRLM.ipynb`](../../notebooks/02-MRLM.ipynb).
 
 | Aspecto | Código | Pressuposto ou detalhe |
 |---|---|---|
