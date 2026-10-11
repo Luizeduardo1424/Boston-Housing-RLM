@@ -356,6 +356,14 @@ O Tobit trata as 16 casas com `MEDV = 50` como "50 ou mais" e prevê o valor obs
 * Harrison, D.; Rubinfeld, D. L. (1978). *Hedonic prices and the demand for clean air*. Journal of Environmental Economics and Management, 5, 81–102.
 * Belsley, D. A.; Kuh, E.; Welsch, R. E. (1980). *Regression Diagnostics: Identifying Influential Data and Sources of Collinearity*. Wiley.
 * Montgomery, D.C.; Vining, G.C.; Peck, E.A. *Introduction to Linear Regression Analysis*. New York: John Wiley, 2012
+* Anselin, L. (1988). *Spatial Econometrics: Methods and Models*. Dordrecht: Kluwer Academic Publishers.
+* Anselin, L., Bera, A. K., Florax, R., & Yoon, M. J. (1996). Simple diagnostic tests for spatial dependence. * Regional Science and Urban Economics*, 26(1), 77–104.
+* Arraiz, I., Drukker, D. M., Kelejian, H. H., & Prucha, I. R. (2010). A spatial Cliff-Ord-type model with heteroskedastic innovations: small and large sample results. *Journal of Regional Science*, 50(2), 592–614.
+* Gilley, O. W., & Pace, R. K. (1996). On the Harrison and Rubinfeld data. *Journal of Environmental Economics and Management*, 31(3), 403–405.
+* Kelejian, H. H., & Prucha, I. R. (2010). Specification and estimation of spatial autoregressive models with autoregressive and heteroskedastic disturbances. *Journal of Econometrics*, 157(1), 53–67.
+* Pace, R. K., & Gilley, O. W. (1997). Using the spatial configuration of the data to improve estimation. *Journal of Real Estate Finance and Economics*, 14(3), 333–340.
+* Tobin, J. (1958). Estimation of relationships for limited dependent variables. *Econometrica*, 26(1), 24–36.
+* Wooldridge, J. M. *Introductory Econometrics: A Modern Approach*. Cengage Learning. (Cap. 8: Heteroskedasticity.)
 
 ---
 
